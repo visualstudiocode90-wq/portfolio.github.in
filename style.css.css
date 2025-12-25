@@ -1,0 +1,186 @@
+:root {
+    --bg-dark: #222;
+    --primary-color: #38c172; /* हरा रंग */
+    --form-bg: #1e1e1e;
+    --text-color: #f0f0f0;
+    --shadow-color: rgba(56, 193, 114, 0.5); /* हरे रंग की परछाई */
+}
+
+/* सामान्य स्टाइलिंग */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: var(--bg-dark);
+    font-family: sans-serif;
+    overflow: hidden;
+}
+
+/* सेक्शन कंटेनर */
+.lamp-login-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 800px; /* कुल चौड़ाई */
+    padding: 20px;
+    position: relative;
+}
+
+/* --- लैंप स्टाइलिंग (शुरुआत में शांत/काला) --- */
+
+.lamp-container {
+    position: relative;
+    width: 250px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    transition: transform 0.5s ease;
+}
+
+.lamp {
+    overflow: visible; /* जीभ (tongue) को बाहर निकलने की अनुमति देने के लिए */
+    width: 200px;
+    height: 200px;
+}
+
+.lamp-head .shade {
+    fill: #444; /* शांत मोड शेड का रंग */
+    transition: fill 0.5s ease;
+}
+
+.lamp-head .bulb {
+    fill: #2e2e2e; /* शांत मोड बल्ब का रंग */
+    transition: fill 0.5s ease;
+}
+
+.tongue {
+    /* शांत मोड में जीभ छिपाएँ */
+    transform-origin: 100% 100%;
+    transform: scaleY(0);
+    transition: transform 0.3s ease-in-out;
+}
+
+.light-effect {
+    position: absolute;
+    bottom: 120px; /* लैंप के बल्ब के नीचे */
+    width: 120px;
+    height: 80px;
+    background: transparent; /* शांत मोड में कोई रौशनी नहीं */
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+/* --- लॉगिन फॉर्म स्टाइलिंग --- */
+
+.login-form-box {
+    width: 350px;
+    padding: 30px;
+    background-color: var(--form-bg);
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    color: var(--text-color);
+    border: 2px solid #444; /* शांत मोड में गहरी सीमा */
+    transition: border-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+.welcome-text {
+    text-align: center;
+    color: #999; /* शांत मोड में हल्का रंग */
+    margin-bottom: 20px;
+    transition: color 0.5s ease;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #333;
+    color: var(--text-color);
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #555; /* शांत मोड बटन रंग */
+    color: #fff;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.5s ease, transform 0.1s;
+}
+
+.login-btn:hover {
+    background-color: #666;
+}
+
+.form-footer {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.forgot-link {
+    color: #888;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.5s ease;
+}
+
+/* --- ACTIVE/CUTE मोड स्टाइलिंग --- */
+
+/* जब फ़ॉर्म को फ़ोकस किया जाता है तो इसे लागू करें */
+.lamp-login-container.active .lamp-head .shade {
+    fill: var(--primary-color); /* हरा शेड */
+}
+
+.lamp-login-container.active .lamp-head .bulb {
+    fill: #fff; /* सफ़ेद बल्ब */
+}
+
+.lamp-login-container.active .tongue {
+    transform: scaleY(1) rotate(5deg); /* जीभ बाहर और थोड़ा झुकी हुई */
+}
+
+.lamp-login-container.active .light-effect {
+    opacity: 1;
+    background: radial-gradient(circle at 50% 10%, var(--shadow-color) 0%, transparent 70%);
+}
+
+.lamp-login-container.active .login-form-box {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 20px var(--shadow-color);
+}
+
+.lamp-login-container.active .welcome-text {
+    color: var(--primary-color);
+}
+
+.lamp-login-container.active .login-btn {
+    background-color: var(--primary-color);
+}
+
+.lamp-login-container.active .login-btn:hover {
+    background-color: #2fb967;
+}
+
+.lamp-login-container.active .forgot-link {
+    color: var(--primary-color);
+}

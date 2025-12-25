@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Himanshu Jangra | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Inter:wght@300;400;600;800&family=Manrope:wght@400;700&family=Outfit:wght@300;500;700&family=Playfair+Display:ital,wght@0,600;1,400&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+        // --- NEW PROFESSIONAL THEME ENGINE ---
+        const themes = [
+            'theme-minimal-dark',   // 0: Deep Black & White (Clean)
+            'theme-classic-light',  // 1: White Background (Agency Style)
+            'theme-modern-slate',   // 2: Blue-ish Dark (Corporate)
+            'theme-soft-charcoal',  // 3: Matte Black (Easy on eyes)
+            'theme-midnight'        // 4: Deep Navy Blue (Premium)
+        ];
+        
+        const randomTheme = themes[Math.floor(Math.random() * themes.length)];
+        document.documentElement.className = randomTheme; 
+        console.log("Current Theme Loaded:", randomTheme);
+    </script>
+
+    <style>
+        /* --- 1. BASE VARIABLES --- */
+        :root {
+            --bg-color: #050505;
+            --text-color: #ffffff;
+            --accent-color: #ffffff;
+            --secondary-text: #a1a1aa;
+            --font-main: 'Inter', sans-serif;
+            --font-display: 'Manrope', sans-serif;
+            --card-bg: rgba(255,255,255,0.05);
+            --border-color: rgba(255,255,255,0.1);
+            --overlay-strength: 0.7; 
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-main);
+            transition: background 0.5s ease, color 0.5s ease;
+            overflow-x: hidden;
+        }
+
+        /* --- 2. NEW PROFESSIONAL THEME DEFINITIONS --- */
+
+        /* 1. MINIMAL DARK (Standard) */
+        .theme-minimal-dark {
+            --bg-color: #050505;
+            --text-color: #ffffff;
+            --accent-color: #ffffff;
+            --secondary-text: #9ca3af;
+            --font-main: 'Inter', sans-serif;
+            --font-display: 'Space Grotesk', sans-serif;
+            --overlay-strength: 0.7;
+        }
+
+        /* 2. CLASSIC LIGHT (Clean Agency) */
+        .theme-classic-light {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --accent-color: #000000;
+            --secondary-text: #4b5563;
+            --font-main: 'DM Sans', sans-serif;
+            --font-display: 'DM Sans', sans-serif;
+            --card-bg: #f3f4f6;
+            --border-color: rgba(0,0,0,0.1);
+            --overlay-strength: 0.3; /* Lighter overlay on hero */
+        }
+        .theme-classic-light nav { background: rgba(255,255,255,0.9) !important; border-bottom: 1px solid #e5e7eb; }
+        .theme-classic-light .glass-card { background: #f9fafb; border: 1px solid #e5e7eb; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+
+        /* 3. MODERN SLATE (Corporate Dark) */
+        .theme-modern-slate {
+            --bg-color: #0f172a; /* Slate 900 */
+            --text-color: #f8fafc;
+            --accent-color: #38bdf8; /* Sky Blue */
+            --secondary-text: #94a3b8;
+            --font-main: 'Outfit', sans-serif;
+            --font-display: 'Outfit', sans-serif;
+            --card-bg: rgba(30, 41, 59, 0.5);
+            --border-color: rgba(148, 163, 184, 0.1);
+        }
+
+        /* 4. SOFT CHARCOAL (Matte) */
+        .theme-soft-charcoal {
+            --bg-color: #18181b; /* Zinc 900 */
+            --text-color: #e4e4e7;
+            --accent-color: #e4e4e7;
+            --secondary-text: #a1a1aa;
+            --font-main: 'Manrope', sans-serif;
+            --font-display: 'Manrope', sans-serif;
+            --card-bg: #27272a;
+            --border-color: #3f3f46;
+        }
+        .theme-soft-charcoal .glass-card { border-radius: 12px; }
+        .theme-soft-charcoal button { border-radius: 8px; }
+
+        /* 5. MIDNIGHT (Premium) */
+        .theme-midnight {
+            --bg-color: #020617; /* Very Dark Blue */
+            --text-color: #ffffff;
+            --accent-color: #fbbf24; /* Subtle Gold */
+            --secondary-text: #cbd5e1;
+            --font-main: 'Inter', sans-serif;
+            --font-display: 'Playfair Display', serif; /* Classy Touch */
+            --card-bg: rgba(255,255,255,0.03);
+            --border-color: rgba(255,255,255,0.05);
+        }
+
+        /* --- 3. UTILITIES --- */
+        .font-code { font-family: 'Inter', sans-serif; letter-spacing: 1px; text-transform: uppercase; font-size: 0.75rem; font-weight: 600; }
+        .font-display { font-family: var(--font-display); }
+        .glass-card { background: var(--card-bg); border: 1px solid var(--border-color); backdrop-filter: blur(10px); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        
+        /* Cursor */
+        .cursor-dot { width: 8px; height: 8px; background: var(--text-color); position: fixed; pointer-events: none; z-index: 9999; border-radius: 50%; display: none; mix-blend-mode: difference;}
+        .cursor-circle { width: 30px; height: 30px; border: 1px solid var(--text-color); position: fixed; pointer-events: none; z-index: 9999; border-radius: 50%; transition: 0.1s; display: none; mix-blend-mode: difference;}
+        @media (pointer: fine) { .cursor-dot, .cursor-circle { display: block; } }
+
+        /* Animations */
+        .clip-text-reveal { clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%); transform: translateY(40px); opacity: 0; transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+        .clip-text-reveal.visible { clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); transform: translateY(0); opacity: 1; }
+
+        /* Hero Background Setup */
+        .hero-bg {
+            position: absolute; inset: 0; z-index: 0;
+            background-image: url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2070&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center;
+        }
+        .hero-overlay {
+            position: absolute; inset: 0; z-index: 1;
+            background: var(--bg-color); /* Adaptive overlay based on theme */
+            opacity: var(--overlay-strength);
+        }
+
+        /* Footer Video Setup */
+        .footer-video-container { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+        .footer-video { width: 100%; height: 100%; object-fit: cover; opacity: 0.2; filter: grayscale(100%); }
+        .footer-overlay { position: absolute; inset: 0; background: var(--bg-color); opacity: 0.85; z-index: 1; }
+
+        /* Tilt */
+        @media (hover: hover) { .tilt-card { transform-style: preserve-3d; transition: transform 0.1s ease-out; } .tilt-content { transform: translateZ(20px); } }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <div class="fixed inset-0 bg-[var(--bg-color)] z-[10000] flex flex-col items-center justify-center transition-transform duration-700" id="preloader">
+        <div class="text-[var(--text-color)] font-display text-xl tracking-widest">LOADING...</div>
+    </div>
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-circle"></div>
+
+    <nav class="fixed w-full z-40 top-0 left-0 border-b border-[var(--border-color)] bg-[var(--bg-color)]/80 backdrop-blur-md transition-colors duration-500">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="font-display text-lg md:text-xl tracking-widest font-bold text-[var(--text-color)]">
+                HIMANSHU<span class="opacity-50">.JANGRA</span>
+            </a>
+            
+            <div class="hidden md:flex space-x-8 text-xs font-code tracking-widest text-[var(--text-color)] opacity-70">
+                <a href="#about" class="hover:text-[var(--accent-color)] hover:opacity-100 transition">01. ABOUT</a>
+                <a href="#stack" class="hover:text-[var(--accent-color)] hover:opacity-100 transition">02. SKILLS</a>
+                <a href="#projects" class="hover:text-[var(--accent-color)] hover:opacity-100 transition">03. WORK</a>
+            </div>
+
+            <a href="#contact" class="px-5 py-2 border border-[var(--border-color)] rounded-full text-[10px] md:text-xs font-code hover:bg-[var(--text-color)] hover:text-[var(--bg-color)] transition duration-300 text-[var(--text-color)]">
+                HIRE ME
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative min-h-screen flex items-center justify-center px-4 pt-20 overflow-hidden">
+        
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        
+        <div class="relative z-10 w-full max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center md:items-end justify-between">
+                <div class="w-full md:w-3/4 text-[var(--text-color)]"> 
+                    <p class="font-code text-[var(--accent-color)] mb-4 clip-text-reveal delay-100 text-sm md:text-base tracking-widest">
+                        HELLO, I AM HIMANSHU JANGRA
+                    </p>
+                    <h1 class="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-bold leading-tight mb-6">
+                        <div class="clip-text-reveal delay-200">WEB</div>
+                        <div class="clip-text-reveal delay-300 opacity-60">DEVELOPER</div>
+                        <div class="clip-text-reveal delay-400 text-[var(--accent-color)]">& DESIGNER</div>
+                    </h1>
+                </div>
+
+                <div class="hidden md:block w-1/4 text-right mb-10 clip-text-reveal delay-500">
+                    <p class="text-xs text-[var(--text-color)] opacity-70 font-code leading-loose"> 
+                        AVAILABLE FOR FREELANCE<br>
+                        BASED IN INDIA<br>
+                        SCROLL TO EXPLORE
+                    </p>
+                </div>
+            </div>
+            
+            <p class="max-w-xl text-[var(--text-color)] opacity-80 text-sm md:text-lg mt-8 clip-text-reveal delay-500 leading-relaxed font-[var(--font-main)]">
+                Transforming complex problems into elegant digital solutions. I build accessible, pixel-perfect, and performant web experiences for businesses and startups.
+            </p>
+
+            <div class="mt-12 clip-text-reveal delay-700 flex gap-4">
+                <button class="px-8 py-3 bg-[var(--text-color)] text-[var(--bg-color)] font-bold text-sm tracking-widest hover:opacity-90 transition-all duration-300 rounded-sm">
+                    VIEW PORTFOLIO
+                </button>
+                
+            </div>
+        </div>
+    </section>
+
+    <div class="relative w-full z-30 overflow-hidden text-white transition-colors duration-500" id="stats-container" style="background-color: #00CDB8;">
+        <div class="hidden md:block absolute -bottom-[1px] right-[10%] w-24 h-12 bg-[var(--bg-color)] transform skew-x-[30deg] origin-bottom-left border-l border-[var(--border-color)]"></div>
+
+        <div class="max-w-7xl mx-auto px-6 py-10 md:py-14">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
+                <div class="flex items-center gap-3">
+                    <div class="flex items-baseline">
+                        <span class="text-4xl md:text-5xl font-display font-bold stat-number" data-target="3">0</span>
+                        <span class="text-2xl font-display font-bold">+</span>
+                    </div>
+                    <p class="text-xs md:text-sm font-bold leading-tight uppercase tracking-wide opacity-80">Years<br>Experience</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="flex items-baseline">
+                        <span class="text-4xl md:text-5xl font-display font-bold stat-number" data-target="25">0</span>
+                        <span class="text-2xl font-display font-bold">k</span>
+                    </div>
+                    <p class="text-xs md:text-sm font-bold leading-tight uppercase tracking-wide opacity-80">Lines<br>Coded</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="flex items-baseline">
+                        <span class="text-4xl md:text-5xl font-display font-bold stat-number" data-target="50">0</span>
+                        <span class="text-2xl font-display font-bold">+</span>
+                    </div>
+                    <p class="text-xs md:text-sm font-bold leading-tight uppercase tracking-wide opacity-80">Projects<br>Completed</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="flex items-baseline">
+                        <span class="text-4xl md:text-5xl font-display font-bold stat-number" data-target="100">0</span>
+                        <span class="text-2xl font-display font-bold">%</span>
+                    </div>
+                    <p class="text-xs md:text-sm font-bold leading-tight uppercase tracking-wide opacity-80">Job<br>Success</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="stack" class="relative py-24 px-4 transition-colors duration-500">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-[var(--border-color)] pb-8">
+                <h2 class="text-3xl md:text-5xl font-display font-bold text-[var(--text-color)]">Technical <span class="opacity-50">Expertise</span></h2>
+                <p class="font-code text-xs text-[var(--secondary-text)] mt-4 md:mt-0">FOCUS: Development, Design, Strategy</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass-card p-8 tilt-card relative overflow-hidden group" data-tilt>
+                    <div class="mb-6 opacity-80 text-4xl grayscale text-[var(--text-color)]">💻</div>
+                    <div class="tilt-content">
+                        <h3 class="text-xl font-bold mb-4 font-display text-[var(--text-color)]">Web Development</h3>
+                        <p class="text-[var(--secondary-text)] text-sm leading-relaxed mb-6">
+                            Building responsive, accessible, and dynamic websites from scratch using modern technologies.
+                        </p>
+                        <ul class="text-xs font-code text-[var(--text-color)] space-y-2 opacity-80">
+                            <li class="border-b border-[var(--border-color)] pb-1">HTML5 / CSS3</li>
+                            <li class="border-b border-[var(--border-color)] pb-1">React.js / Next.js</li>
+                            <li>Tailwind CSS</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 tilt-card relative overflow-hidden group" data-tilt>
+                    <div class="mb-6 opacity-80 text-4xl grayscale text-[var(--text-color)]">🔧</div>
+                    <div class="tilt-content">
+                        <h3 class="text-xl font-bold mb-4 font-display text-[var(--text-color)]">Backend & API</h3>
+                        <p class="text-[var(--secondary-text)] text-sm leading-relaxed mb-6">
+                            Creating secure and scalable server-side logic and database architectures.
+                        </p>
+                        <ul class="text-xs font-code text-[var(--text-color)] space-y-2 opacity-80">
+                            <li class="border-b border-[var(--border-color)] pb-1">Node.js / Express</li>
+                            <li class="border-b border-[var(--border-color)] pb-1">MongoDB / SQL</li>
+                            <li>RESTful APIs</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 tilt-card relative overflow-hidden group" data-tilt>
+                    <div class="mb-6 opacity-80 text-4xl grayscale text-[var(--text-color)]">✨</div>
+                    <div class="tilt-content">
+                        <h3 class="text-xl font-bold mb-4 font-display text-[var(--text-color)]">Creative Design</h3>
+                        <p class="text-[var(--secondary-text)] text-sm leading-relaxed mb-6">
+                            Crafting engaging user interfaces with smooth animations and intuitive layouts.
+                        </p>
+                        <ul class="text-xs font-code text-[var(--text-color)] space-y-2 opacity-80">
+                            <li class="border-b border-[var(--border-color)] pb-1">Figma Prototyping</li>
+                            <li class="border-b border-[var(--border-color)] pb-1">GSAP Animations</li>
+                            <li>UI/UX Strategy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-24 bg-[var(--card-bg)]">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-xs font-code text-[var(--text-color)] opacity-60 mb-2">SELECTED WORKS</h2>
+            <h2 class="text-4xl md:text-6xl font-display font-bold mb-16 text-[var(--text-color)]">Featured <br> Projects</h2>
+            
+            <div class="space-y-20">
+                <div class="group relative grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div class="order-2 md:order-1">
+                        <h3 class="text-3xl font-bold mb-4 text-[var(--text-color)]">FRONT-END DEVELOPER</h3>
+                        <p class="text-[var(--secondary-text)] text-base mb-6 leading-relaxed">A comprehensive full-stack shopping application. Key features include real-time inventory tracking, secure Stripe payments, and a bespoke admin panel for order management.</p>
+                        <div class="flex gap-3 mb-8">
+                            <span class="px-4 py-1 border border-[var(--border-color)] rounded-full text-[10px] tracking-widest uppercase text-[var(--text-color)]">React</span>
+                            <span class="px-4 py-1 border border-[var(--border-color)] rounded-full text-[10px] tracking-widest uppercase text-[var(--text-color)]">Node.js</span>
+                            <span class="px-4 py-1 border border-[var(--border-color)] rounded-full text-[10px] tracking-widest uppercase text-[var(--text-color)]">MongoDB</span>
+                        </div>
+                        <a href="#" class="inline-block border-b border-[var(--text-color)] pb-1 text-[var(--text-color)] hover:opacity-50 transition">VIEW CASE STUDY</a>
+                    </div>
+                    <div class="order-1 md:order-2 overflow-hidden rounded-lg shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop" alt="Project 1" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700">
+                    </div>
+                </div>
+
+                <div class="group relative grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div class="overflow-hidden rounded-lg shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2340&auto=format&fit=crop" alt="Project 2" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700">
+                    </div>
+                    <div>
+                        <h3 class="text-3xl font-bold mb-4 text-[var(--text-color)]">BACKEND-DEVELOPER{AI}</h3>
+                        <p class="text-[var(--secondary-text)] text-base mb-6 leading-relaxed">A high-performance dashboard for tracking cryptocurrency assets. Integrates with the CoinGecko API to provide real-time data visualization through interactive charts in a dark-mode optimized UI.</p>
+                        <div class="flex gap-3 mb-8">
+                            <span class="px-4 py-1 border border-[var(--border-color)] rounded-full text-[10px] tracking-widest uppercase text-[var(--text-color)]">Next.js</span>
+                            <span class="px-4 py-1 border border-[var(--border-color)] rounded-full text-[10px] tracking-widest uppercase text-[var(--text-color)]">Chart.js</span>
+                        </div>
+                         <a href="#" class="inline-block border-b border-[var(--text-color)] pb-1 text-[var(--text-color)] hover:opacity-50 transition">VIEW LIVE DEMO</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="relative border-t border-[var(--border-color)] pt-24 pb-12 overflow-hidden">
+        
+        <div class="footer-video-container">
+            <video class="footer-video" autoplay muted loop playsinline>
+                <source src="video.mp4" type="video/mp4">
+            </video>
+            <div class="footer-overlay"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 text-center">
+            
+            <h2 class="text-4xl md:text-7xl font-display font-bold mb-8 text-[var(--text-color)]">Have a Project? <br> Let's <span class="border-b-4 border-[var(--text-color)]">Build It.</span></h2>
+            
+            <a href="mailto:himanshu@dev.com" class="text-xl md:text-3xl text-[var(--secondary-text)] hover:text-[var(--text-color)] transition font-display mt-8 inline-block">himanshu.jangra</a>
+            
+            <div class="mt-24 flex flex-col md:flex-row justify-between items-center text-[10px] md:text-xs text-[var(--text-color)] uppercase tracking-widest font-code gap-6 opacity-60">
+                <div> Himanshu Jangra.</div>
+                <div class="flex space-x-8">
+                    <a href="https://web.whatsapp.com/" class="hover:opacity-100 transition">WHATSAPP</a>
+                    <a href="https://mail.google.com/mail/u/0/#inbox?compose=new" class="hover:opacity-100 transition">GMAIL</a>
+                   
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. PRELOADER
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.style.transform = 'translateY(-100%)';
+                triggerIntro();
+            }, 800);
+        });
+
+        function triggerIntro() {
+            const textReveals = document.querySelectorAll('.clip-text-reveal');
+            textReveals.forEach(el => el.classList.add('visible'));
+        }
+
+        // 2. CURSOR LOGIC (Subtle)
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorCircle = document.querySelector('.cursor-circle');
+        let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursorDot.style.left = mouseX + 'px';
+            cursorDot.style.top = mouseY + 'px';
+        });
+
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.15;
+            cursorY += (mouseY - cursorY) * 0.15;
+            cursorCircle.style.left = cursorX + 'px';
+            cursorCircle.style.top = cursorY + 'px';
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // 3. STATS COUNTER
+        const statsSection = document.getElementById('stats-container');
+        const statNumbers = document.querySelectorAll('.stat-number');
+        let started = false;
+
+        function startCount(el) {
+            let target = parseFloat(el.getAttribute('data-target'));
+            let count = 0;
+            let isFloat = target % 1 !== 0; 
+            let counter = setInterval(() => {
+                count += isFloat ? 0.1 : 1;
+                el.innerText = isFloat ? count.toFixed(1) : Math.ceil(count);
+                if (count >= target) {
+                    el.innerText = target;
+                    clearInterval(counter);
+                }
+            }, 20);
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !started) {
+                    statNumbers.forEach(num => startCount(num));
+                    started = true;
+                }
+            });
+        }, { threshold: 0.5 });
+        if(statsSection) observer.observe(statsSection);
+
+        // 4. TILT EFFECT
+        const cards = document.querySelectorAll('.tilt-card');
+        if (window.matchMedia("(hover: hover)").matches) {
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 10; // Reduced tilt intensity for professional look
+                    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -10;
+                    card.style.transform = `perspective(1000px) rotateX(${y}deg) rotateY(${x}deg)`;
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+                });
+            });
+        }
+    </script>
+</body>
+</html>
